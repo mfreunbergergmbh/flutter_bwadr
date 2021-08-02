@@ -10,20 +10,31 @@ class Loading extends StatefulWidget{
 
 class _LoadingState extends State<Loading>{
 
-  void initData() async {
+  void initAdressData() async {
+    print("Loading AdressData");
     await AdressData.getAdresses();    
-    await ContactData.getContacts();
-    print (ContactData.contacts);
     Navigator.pushReplacementNamed(context, "/home");
   }
-
+  void initContactData(String number) async {
+    print("Loading ContactData");
+    await ContactData.getContacts(number: number);
+    Navigator.pushReplacementNamed(context, "/adr_detail", arguments: {
+      "adressNumber" : number ,
+    });
+  }
   @override initState(){
     super.initState();
-    initData();
+
   }
 
   @override
   Widget build(BuildContext context){
+    Map args = ModalRoute.of(context)?.settings.arguments == null ? {} : ModalRoute.of(context)?.settings.arguments as Map;
+    if (args.containsKey("adressNumber")){
+      initContactData(args["adressNumber"]);
+    }else{
+      initAdressData();
+    }
     return Scaffold(
         backgroundColor: Colors.green[400],
         body: Center(

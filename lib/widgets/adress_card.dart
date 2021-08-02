@@ -17,7 +17,7 @@ class AdressCard extends StatelessWidget{
           child: Column(
             children: <Widget>[
               Container(
-                child: AdressHeader(),
+                child: AdressHeader(context),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(10.0,0.0,10.0,0.0),
@@ -37,10 +37,12 @@ class AdressCard extends StatelessWidget{
     );
   }
 
-  Widget AdressHeader(){
+  Widget AdressHeader(BuildContext context){
     return ListTile(
         onTap: (){
-          print("AdressINFO");
+          Navigator.pushNamed(context, "/", arguments: {
+            'adressNumber' : adress.number,
+          });
         },
         title: Row(
         children: <Widget> [

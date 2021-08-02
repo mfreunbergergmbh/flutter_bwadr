@@ -3,6 +3,12 @@ import 'package:bwadr/model/adress.dart';
 class AdressData {
 
   static List<Adress> adresses = [];
+  static Adress getAdress(String number){
+    for (Adress adress in adresses){
+      if (adress.number == number) return adress;
+    }
+    return Adress(name: "Nicht gefunden", number: "nan");
+  }
 
   static Future<void> getAdresses() async {
     adresses = await Future.delayed(Duration(seconds: 5), (){
