@@ -1,11 +1,10 @@
-import 'package:bwadr/model/adress.dart';
+import 'package:bwadr/model/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AdressCard extends StatelessWidget{
-  Adress adress; 
-
-  AdressCard({required this.adress});
+class ContactCard extends StatelessWidget{
+  Contact contact;
+  ContactCard({required this.contact});
 
   @override
   Widget build(BuildContext context){
@@ -18,7 +17,7 @@ class AdressCard extends StatelessWidget{
           child: Column(
             children: <Widget>[
               Container(
-                child: AdressHeader(context),
+                child: ContactHeader(context),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(10.0,0.0,10.0,0.0),
@@ -29,7 +28,7 @@ class AdressCard extends StatelessWidget{
                 ),
               ),
               Container(
-                child: AdressInfo(), 
+                child: ContactInfo(), 
               ),
             ]
           ),
@@ -38,13 +37,8 @@ class AdressCard extends StatelessWidget{
     );
   }
 
-  Widget AdressHeader(BuildContext context){
+  Widget ContactHeader(BuildContext context){
     return ListTile(
-        onTap: (){
-          Navigator.pushNamed(context, "/", arguments: {
-            'adressNumber' : adress.number,
-          });
-        },
         title: Row(
         children: <Widget> [
           Padding(
@@ -59,15 +53,9 @@ class AdressCard extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                adress.name,
+                (contact.firstName + contact.lastName),
                 style: TextStyle(
                   fontSize: 24.0,
-                ),
-              ),
-              Text(
-                adress.number,
-                style: TextStyle(
-                  fontSize: 20.0,
                 ),
               ),
             ]
@@ -77,7 +65,7 @@ class AdressCard extends StatelessWidget{
     );
   }
 
-  Widget AdressInfo(){
+  Widget ContactInfo(){
     return Padding (
         padding: EdgeInsets.fromLTRB(10.0,0.0,10.0,0.0),
         child: Row( 
@@ -87,12 +75,13 @@ class AdressCard extends StatelessWidget{
               children: <Widget>[
                 FlatButton.icon(
                   onPressed: () async {
-                    print("Sending EMAIL");
-                    String url = "mailto:"+adress.email;
+                    print(" Sending email");
+                    String url = "mailto:"+contact.email;
                     await launch(url);
                   },
                   icon: Icon(Icons.email_outlined),
-                  label: Text(adress.email,
+                  label: Text(
+                    contact.email,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey[800],
@@ -102,12 +91,13 @@ class AdressCard extends StatelessWidget{
                 SizedBox(height: 5.0),
                 FlatButton.icon(
                   onPressed: () async {
-                    print("Sending Tel. Number");
-                    String url = "tel:"+adress.telNumber;
+                    print(" Sending phone");
+                    String url = "tel:"+contact.telNumber;
                     await launch(url);
                   },
                   icon: Icon(Icons.call_outlined),
-                  label: Text(adress.telNumber,
+                  label: Text(
+                    contact.telNumber,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey[800],

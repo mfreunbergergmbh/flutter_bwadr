@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:bwadr/services/adress_data.dart';
 import 'package:bwadr/services/contact_data.dart';
 import 'package:bwadr/model/adress.dart';
+import 'package:bwadr/widgets/contact_card.dart';
+import 'package:bwadr/model/contact.dart';
 
 class AdressDetail extends StatefulWidget{
   @override 
@@ -12,6 +14,7 @@ class AdressDetail extends StatefulWidget{
 class _AdressDetailState extends State<AdressDetail>{
 
   Adress adress = Adress(name: "Nicht gefunden", number: "nan");
+  List<Contact> contacts = [];
 
   @override initState(){
     super.initState();
@@ -22,6 +25,7 @@ class _AdressDetailState extends State<AdressDetail>{
     Map args = ModalRoute.of(context)?.settings.arguments == null ? {} : ModalRoute.of(context)?.settings.arguments as Map;
     if (args.containsKey("adressNumber")){
       adress = AdressData.getAdress(args["adressNumber"]);
+      contacts = ContactData.contactList(number: args["adressNumber"]);
     }
     return Scaffold(
         backgroundColor: Colors.grey[200],
@@ -50,6 +54,14 @@ class _AdressDetailState extends State<AdressDetail>{
                   ),
                 ),
               ],
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: contacts.length,
+                itemBuilder: (context, index) {
+                  return ContactCard(contact: contacts[index]);
+                },
+              ),
             ),
           ],
         ),
