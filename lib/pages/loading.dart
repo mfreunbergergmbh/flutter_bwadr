@@ -11,12 +11,10 @@ class Loading extends StatefulWidget{
 class _LoadingState extends State<Loading>{
 
   void initAdressData() async {
-    print("Loading AdressData");
     await AdressData.getAdresses();    
     Navigator.pushReplacementNamed(context, "/home");
   }
   void initContactData(String number) async {
-    print("Loading ContactData");
     await ContactData.getContacts(number: number);
     Navigator.pushReplacementNamed(context, "/adr_detail", arguments: {
       "adressNumber" : number ,

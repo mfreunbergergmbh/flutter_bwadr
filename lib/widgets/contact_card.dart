@@ -75,7 +75,6 @@ class ContactCard extends StatelessWidget{
               children: <Widget>[
                 FlatButton.icon(
                   onPressed: () async {
-                    print(" Sending email");
                     String url = "mailto:"+contact.email;
                     await launch(url);
                   },
@@ -91,7 +90,6 @@ class ContactCard extends StatelessWidget{
                 SizedBox(height: 5.0),
                 FlatButton.icon(
                   onPressed: () async {
-                    print(" Sending phone");
                     String url = "tel:"+contact.telNumber;
                     await launch(url);
                   },

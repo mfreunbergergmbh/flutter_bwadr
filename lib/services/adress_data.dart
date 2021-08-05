@@ -5,8 +5,8 @@ import 'package:crypto/crypto.dart';
 
 class AdressData {
   //WEBWARE REST API connection parameters
-  static String passID = "5678156bb43cb7a5179cd55e6ad5ac6c";
-  static String appID = "8b223ebcd327370be767fe202428e815";
+  static String passID = "c1af3be6973834eb66ee709e9e0102ce";
+  static String appID = "54261605f4daf3243cefed851ea3c7ff";
 
   static String urlLocation = "demoww.freunberger.com:1547";
   static String urlExtended = "/WWSVC/EXECJSON/";
@@ -61,17 +61,13 @@ class AdressData {
     //apiURI = Uri.https("worldtimeapi.org", "/api/timezone/Europ/Vienna");
 
     try {
-      print(header);
       Response response = await put(apiURI, headers: header, body: json.encode(body));
       if(response.statusCode == 200){
-        print ("seems like it worked");
-      }
-      var decoded = json.decode(response.body);
-      print(decoded);
-      List loadedAdresses = decoded['ADRESSLISTE']["ADRESSE"];
-      print(loadedAdresses);
-      for(dynamic adress in loadedAdresses){
-        adresses.add(Adress(number: adress['ADR_2_8'], name: adress['ADR_20_30'], telNumber: adress['ADR_2332_20'], email: adress['ADR_1330_60']));
+        var decoded = json.decode(response.body);
+        List loadedAdresses = decoded['ADRESSLISTE']["ADRESSE"];
+        for(dynamic adress in loadedAdresses){
+          adresses.add(Adress(number: adress['ADR_2_8'], name: adress['ADR_20_30'], telNumber: adress['ADR_2332_20'], email: adress['ADR_1330_60']));
+        }
       }
     }catch (e){
       print(e);

@@ -5,11 +5,12 @@ class Contact{
   String email = "-/-";
   String telNumber = "-/-";
 
-  Contact({required this.adressNumber, required this.lastName, 
-          String firstname=" ", String email="-/-", String telNumber="-/-"
+  Contact({required this.adressNumber,  String lastName = "-/-", 
+          String firstName=" ", String email="-/-", String telNumber="-/-"
   }){
-    this.telNumber = telNumber;
-    this.email = email;
-    this.firstName = firstName;
+    this.telNumber = (telNumber.isEmpty) ? "-/-" : telNumber;
+    this.email = (email.isEmpty) ? "-/-" : email;
+    this.firstName = (firstName.isEmpty) ? "Ansprechpartner" : firstName;
+    this.lastName = (lastName.isEmpty) ? "" : lastName; 
   }
 }

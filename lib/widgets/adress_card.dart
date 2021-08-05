@@ -87,7 +87,6 @@ class AdressCard extends StatelessWidget{
               children: <Widget>[
                 FlatButton.icon(
                   onPressed: () async {
-                    print("Sending EMAIL");
                     String url = "mailto:"+adress.email;
                     await launch(url);
                   },
@@ -102,7 +101,6 @@ class AdressCard extends StatelessWidget{
                 SizedBox(height: 5.0),
                 FlatButton.icon(
                   onPressed: () async {
-                    print("Sending Tel. Number");
                     String url = "tel:"+adress.telNumber;
                     await launch(url);
                   },
