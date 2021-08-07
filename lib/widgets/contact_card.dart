@@ -53,7 +53,7 @@ class ContactCard extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                (contact.firstName + contact.lastName),
+                (contact.pronoun + contact.title + contact.firstName + " " + contact.lastName),
                 style: TextStyle(
                   fontSize: 24.0,
                 ),
@@ -95,7 +95,7 @@ class ContactCard extends StatelessWidget{
                   },
                   icon: Icon(Icons.call_outlined),
                   label: Text(
-                    contact.telNumber,
+                    ("TEL: "+contact.telNumber),
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey[800],
@@ -103,6 +103,20 @@ class ContactCard extends StatelessWidget{
                   ),
                 ),
                 SizedBox(height: 5.0),
+                FlatButton.icon(
+                  onPressed: () async {
+                    String url = "tel:"+contact.mobileNumber;
+                    await launch(url);
+                  },
+                  icon: Icon(Icons.call_outlined),
+                  label: Text(
+                    ("MOB: "+contact.mobileNumber),
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                ),
               ]
             ),
           ]

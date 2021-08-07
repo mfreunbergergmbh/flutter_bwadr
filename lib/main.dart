@@ -4,6 +4,11 @@ import 'package:bwadr/pages/loading.dart';
 import 'package:bwadr/pages/adr_detail.dart';
 
 void main() => runApp(MaterialApp(
+  title: "BüroWARE Adressen",
+  theme: ThemeData(
+    primaryColor: Colors.green[400],
+    accentColor: Colors.greenAccent,
+  ),
   initialRoute: "/",
   routes: {
     '/home' : (Widget) => Home(),
