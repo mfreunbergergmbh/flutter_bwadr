@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home>{
   bool searchEnabled = false;
   String searchText = "";
+  int settingCounter = 0;
 
   List<Adress> query = [];
 
@@ -45,6 +46,11 @@ class _HomeState extends State<Home>{
                     }
                     else if (!searchEnabled){ 
                       searchEnabled=true;
+                    }
+                    settingCounter++;
+                    if(settingCounter==5){
+                      settingCounter=0;
+                      Navigator.pushNamed(context, "/settings");
                     }
                   });
                 },

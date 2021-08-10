@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bwadr/pages/home.dart';
 import 'package:bwadr/pages/loading.dart';
 import 'package:bwadr/pages/adr_detail.dart';
+import 'package:bwadr/pages/settings.dart';
 
 void main() => runApp(MaterialApp(
   title: "BüroWARE Adressen",
@@ -14,6 +15,7 @@ void main() => runApp(MaterialApp(
     '/home' : (Widget) => Home(),
     '/' : (Widget) => Loading(),
     '/adr_detail' : (Widget) => AdressDetail(),
+    '/settings' : (Widget) => Settings(),
   },
 ));
 
